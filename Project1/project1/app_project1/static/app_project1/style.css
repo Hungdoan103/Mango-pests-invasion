@@ -1,0 +1,269 @@
+/* ==== GENERAL ==== */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+/* ==== HEADER & NAVIGATION ==== */
+nav {
+  background-color: #E67E22;
+  padding: 18px;
+  text-align: center;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==== TITLES ==== */
+h1 {
+  text-align: center;
+  color: #222;
+  margin: 40px 0 30px;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #E67E22;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+h2, h3 {
+  color: #E67E22;
+  margin: 5px 0;
+}
+
+/* ==== CARD GRID ==== */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: stretch;
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+/* ==== INDIVIDUAL CARD ==== */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.card-footer {
+  margin-top: auto;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #E67E22;
+}
+
+.card-text,
+.summary {
+  font-size: 14px;
+  color: #555;
+  min-height: 50px;
+}
+
+/* ==== BUTTONS ==== */
+.view-btn,
+.details-btn,
+.buy-btn,
+.back-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #E67E22;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.view-btn:hover,
+.details-btn:hover,
+.back-link:hover {
+  background-color: #cf6a13;
+}
+
+
+/* ==== MISC ==== */
+em {
+  color: #777;
+  font-size: 14px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+.detail-wrapper {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.detail-title {
+  font-size: 2rem;
+  color: #E67E22;
+  margin-bottom: 30px;
+}
+
+.detail-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.detail-desc {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.scientific-name {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.tags-box {
+  margin: 20px 0;
+}
+
+.tag, .category {
+  display: inline-block;
+  margin: 5px 8px 5px 0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+.category.fungus { background-color: #9c27b0; }
+.category.insect { background-color: #f44336; }
+.category.bacteria { background-color: #03a9f4; }
+.category.algae { background-color: #4CAF50; }
+
+.tag {
+  background-color: #E67E22; /* màu chủ đạo */
+}
+
+
+/* ==== FOOTER ==== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #eee;
+  margin-top: 60px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card-grid {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mango Pests & Diseases</title>
+  <link rel="stylesheet" href="{% static 'app_project1/style.css' %}">
+</head>
+<body>
+
+<nav>
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'project_list' %}">Projects</a>
+  <a href="{% url 'about' %}">About</a>
+</nav>
+
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
+
+<footer>
+  <p>&copy; 2025 Mango Project | HIT237 Group 20</p>
+</footer>
+
+</body>
+</html>
