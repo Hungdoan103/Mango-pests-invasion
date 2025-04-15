@@ -4,7 +4,11 @@ from django.shortcuts import render
 from .data import pests_list
 
 def home(request):
-    return render(request, 'app_project1/home.html')
+    featured_ids = ['P01', 'P03', 'P04', 'D01', 'D02']
+    featured_pests = [p for p in pests_list if p.id in featured_ids]
+    return render(request, 'app_project1/home.html', {
+        'pests': featured_pests
+    })
 
 def project_list(request):
     return render(request, 'app_project1/list.html', {'pests': pests_list})

@@ -1,57 +1,97 @@
 /* ==== GENERAL ==== */
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f6f9;
-  margin: 0;
-  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom right, #f3f4f7, #eaeef3);
   color: #333;
+  line-height: 1.6;
+  padding: 40px 20px;
 }
 
 .container {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 60px 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
 .content {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 16px;
+  padding: 40px 30px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
 
 /* ==== HEADER & NAVIGATION ==== */
 nav {
-  background-color: #E67E22;
-  padding: 18px;
-  text-align: center;
-  border-radius: 0 0 16px 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  background: linear-gradient(to right, #ff8c42, #ff3c38);
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative;
 }
 
-nav a {
-  color: white;
+.logo img {
+  height: 60px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links a {
+  color: #fff;
   text-decoration: none;
-  margin: 0 20px;
-  font-weight: bold;
-  padding: 10px 16px;
-  border-radius: 6px;
-  transition: background-color 0.2s;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.nav-links a:hover {
+  color: rgba(255,255,255,0.7);
 }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
 
 /* ==== TITLES ==== */
 h1 {
+  font-family: 'Playfair Display', serif;
   text-align: center;
   color: #222;
   margin: 40px 0 30px;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   position: relative;
+  
 }
 
 h1::after {
@@ -65,10 +105,25 @@ h1::after {
 }
 
 h2, h3 {
-  color: #E67E22;
-  margin: 5px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  color: #222;
+  position: relative;
 }
-
+h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #ff8c42;
+  margin-top: 6px;
+  border-radius: 10px;
+}
+p {
+  margin-bottom: 20px;
+}
 /* ==== CARD GRID ==== */
 .card-grid {
   display: flex;
@@ -76,23 +131,25 @@ h2, h3 {
   gap: 25px;
   justify-content: center;
   align-items: stretch;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.75);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
 
 /* ==== INDIVIDUAL CARD ==== */
+
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   width: 320px;
-  display: flex;
-  flex-direction: column;
   padding: 20px;
   transition: transform 0.3s ease;
 }
+
 
 .card:hover {
   transform: translateY(-5px);
@@ -111,13 +168,15 @@ h2, h3 {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 0;
 }
 
 .card-footer {
   margin-top: auto;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
+
 
 .card-title {
   font-size: 20px;
@@ -135,27 +194,23 @@ h2, h3 {
 
 /* ==== BUTTONS ==== */
 .view-btn,
-.details-btn,
-.buy-btn,
 .back-link {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 16px;
-  background-color: #E67E22;
+  background: linear-gradient(to right, #333, #000);
   color: white;
+  border-radius: 30px;
   text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s;
   text-align: center;
+  font-weight: 600;
+  transition: 0.3s ease;
 }
 
 .view-btn:hover,
-.details-btn:hover,
 .back-link:hover {
-  background-color: #cf6a13;
-}
-
+  transform: scale(1.05);
+  background: linear-gradient(to right, #000, #333);}
 
 /* ==== MISC ==== */
 em {
@@ -208,8 +263,9 @@ ul li {
   margin-bottom: 30px;
 }
 
-.scientific-name {
+.sci_name {
   font-size: 16px;
+  text-align: center;
   color: #777;
   margin-bottom: 12px;
 }
@@ -234,7 +290,30 @@ ul li {
 .category.algae { background-color: #4CAF50; }
 
 .tag {
-  background-color: #E67E22; /* màu chủ đạo */
+  background: linear-gradient(to right, #ff8c42, #ff3c38);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 14px;
+}
+
+/* === SCROLLABLE FEATURE SLIDER ==== */
+.scroll-container {
+  overflow-x: auto;
+  padding: 10px 0;
+  margin: 20px 0;
+}
+
+.card-slider {
+  display: flex;
+  gap: 25px;
+  padding: 0 10px;
+  width: max-content;
+}
+
+.card-slider .card {
+  flex: 0 0 auto; 
 }
 
 
