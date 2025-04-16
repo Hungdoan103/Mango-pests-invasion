@@ -28,5 +28,5 @@ A Django-powered informational website displaying key pests and diseases that af
 - Each item includes an image
 
 ## Run Locally
-cd Project1/project1
-python manage.py runserver
+- cd Project1/project1
+- python manage.py runserver
