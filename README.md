@@ -7,8 +7,8 @@ A Django-powered informational website displaying key pests and diseases that af
 
 - Responsible for building the **Detail Page** (`detail.html`)
   - Displays full information when users click **View Details**
-  - Ensured clean layout, readable structure, and consistent formatting
-  - Styled layout using CSS and integrated responsive display
+  - Ensured clean layout and readable structure
+  - Styled layout using CSS
 - Created the **Python class** structure
   - Defined attributes (name, symptoms, treatment, image, etc.)
 
