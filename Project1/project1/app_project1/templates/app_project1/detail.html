@@ -1,0 +1,41 @@
+{% extends 'app_project1/base.html' %}
+
+{% block content %}
+  <h1>{{ item.name }}</h1>
+  <p class="sci_name" ><i>{{ item.sci_name }}</i></p>
+  <img src="{{ item.image_url }}" alt="{{ item.name }}" class="detail-img" >
+  <div class="tags-box">
+    <span class="category {{ item.category_class }}">{{ item.type }}</span>
+    <span class="tag">Severity: {{ item.severity }}</span>
+  </div>
+
+
+  <h3>Description</h3>
+  <ul>
+    <li><strong>Egg:</strong> {{ item.egg }}</li>
+    <li><strong>Larvae:</strong> {{ item.larvae }}</li>
+    <li><strong>Adult:</strong> {{ item.adult }}</li>
+    <li><strong>Life Cycle:</strong> {{ item.life_cycle }}</li>
+  </ul>
+  <p>{{ item.long_des }}</p>
+
+  <h3>Symptoms</h3>
+  <p>{{ item.symp }}</p>
+
+  <h3>Damage</h3>
+  <p>{{ item.damage }}</p>
+
+  <h3>Monitoring</h3>
+  <p>{{ item.monitor }}</p>
+  <ul>
+    <li><strong>Intervention Threshold:</strong> {{ item.iterve_thres }}</li>
+  </ul>
+
+  <h3>Control Measures</h3>
+  <p>{{ item.ctr_measure }}</p>
+
+  <h3>Reference</h3>
+  <p>2024 Mango Field Guide <a href="https://daf.nt.gov.au/__data/assets/pdf_file/0007/1380742/mango-field-guide-part-1.pdf", target = "blank">{{ item.ref }}</a></p>
+
+  <a href="{% url 'project_list' %}" class="view-btn">← Back to List</a>
+{% endblock %}

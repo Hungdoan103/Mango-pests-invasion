@@ -1,0 +1,348 @@
+/* ==== GENERAL ==== */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom right, #f3f4f7, #eaeef3);
+  color: #333;
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 60px 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+/* ==== HEADER & NAVIGATION ==== */
+nav {
+  background: linear-gradient(to right, #ff8c42, #ff3c38);
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: rgba(255,255,255,0.7);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+/* ==== TITLES ==== */
+h1 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  color: #222;
+  margin: 40px 0 30px;
+  font-size: 3rem;
+  font-weight: 700;
+  position: relative;
+  
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #E67E22;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  color: #222;
+  position: relative;
+}
+h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #ff8c42;
+  margin-top: 6px;
+  border-radius: 10px;
+}
+p {
+  margin-bottom: 20px;
+}
+/* ==== CARD GRID ==== */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+/* ==== INDIVIDUAL CARD ==== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 320px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #E67E22;
+}
+
+.card-text,
+.summary {
+  font-size: 14px;
+  color: #555;
+  min-height: 50px;
+}
+
+/* ==== BUTTONS ==== */
+.view-btn,
+.back-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background: linear-gradient(to right, #333, #000);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.view-btn:hover,
+.back-link:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #000, #333);}
+
+/* ==== MISC ==== */
+em {
+  color: #777;
+  font-size: 14px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+.detail-wrapper {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.detail-title {
+  font-size: 2rem;
+  color: #E67E22;
+  margin-bottom: 30px;
+}
+
+.detail-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.detail-desc {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.sci_name {
+  font-size: 16px;
+  text-align: center;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.tags-box {
+  margin: 20px 0;
+}
+
+.tag, .category {
+  display: inline-block;
+  margin: 5px 8px 5px 0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+.category.fungus { background-color: #9c27b0; }
+.category.insect { background-color: #f44336; }
+.category.bacteria { background-color: #03a9f4; }
+.category.algae { background-color: #4CAF50; }
+
+.tag {
+  background: linear-gradient(to right, #ff8c42, #ff3c38);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 14px;
+}
+
+/* === SCROLLABLE FEATURE SLIDER ==== */
+.scroll-container {
+  overflow-x: auto;
+  padding: 10px 0;
+  margin: 20px 0;
+}
+
+.card-slider {
+  display: flex;
+  gap: 25px;
+  padding: 0 10px;
+  width: max-content;
+}
+
+.card-slider .card {
+  flex: 0 0 auto; 
+}
+
+
+/* ==== FOOTER ==== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #eee;
+  margin-top: 60px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card-grid {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

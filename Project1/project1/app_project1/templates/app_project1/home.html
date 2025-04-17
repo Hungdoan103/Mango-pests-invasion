@@ -1,0 +1,39 @@
+{% extends 'app_project1/base.html' %}
+
+{% block content %}
+<h1>Welcome to Mango Forum</h1>
+<p>
+    Mango production often faces a variety of pest and disease challenges. Behind every delicious mango are hardworking growers who face serious challenges from pests and diseases. <br>
+    <strong>Mango Forum</strong> is built as a helpful knowledge hub  to help farmers, students, 
+    and anyone interested in mango growing to identify problems early, understand their causes, and 
+    apply effective control methods.
+</p>
+<h2>What You'll Find Here:</h2>
+<ul>
+  <li>🥭 <strong>List of Common Mango Pests & Diseases</strong></li>
+  <li>🥭 <strong>Guides on Prevention & Control</strong></li>
+  <li>🥭 <strong>More Updates Coming</strong></li>
+</ul>
+<h2>Feature Pests/Diseases:</h2>
+<div class="scroll-container">
+    <div class="card-slider">
+      {% for item in pests %}
+        <div class="card">
+          <img src="{{ item.image_url }}" alt="{{ item.name }}" class="product-img">
+          <div class="card-body">
+            <div class="card-title">{{ item.name }}</div>
+            <em class="scientific-name">{{ item.sci_name }}</em>
+            <div class="card-text">{{ item.short_des }}</div>
+            <ul class="card-meta">
+              <li><strong>Type:</strong> {{ item.type }}</li>
+              <li><strong>Severity:</strong> {{ item.severity }}</li>
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 30px;">
+    <a href="{% url 'project_list' %}" class="view-btn">Go to Projects</a>
+  </div>
+{% endblock %}
