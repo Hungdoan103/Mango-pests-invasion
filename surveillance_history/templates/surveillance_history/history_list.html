@@ -1,0 +1,50 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Surveillance History</h2>
+        <a href="{% url 'dashboard' %}" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+    
+    <div class="card">
+        <div class="card-body">
+            {% if histories %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Session Name</th>
+                                <th>Completion Date</th>
+                                <th>Plants Checked</th>
+                                <th>Result</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Survey history items will go here -->
+                            {% for history in histories %}
+                            <tr>
+                                <td>{{ history.session.name }}</td>
+                                <td>{{ history.completion_date|date:"d/m/Y" }}</td>
+                                <td>{{ history.plants_checked }}</td>
+                                <td>
+                                    <span class="badge {% if history.is_orchard_healthy %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{ history.is_orchard_healthy|yesno:"Safe,At Risk" }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'history_detail' history.id %}" class="btn btn-sm btn-info">Chi tiết</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="text-center">Bạn chưa có kết quả khảo sát nào.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
