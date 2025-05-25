@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Create New Survey Session</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Form fields will go here -->
+                        {{ form.as_p }}
+                        
+                        <!-- Statistical parameters help text will go here -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <small class="form-text text-muted mt-2">
+                                    <strong>Confidence Level:</strong> Value between 0.8 and 0.99 (0.95 = 95%)<br>
+                                    <strong>Error Margin:</strong> Value between 0.01 and 0.1 (0.05 = 5%)
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" class="btn btn-primary">Create Survey Session</button>
+                            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
