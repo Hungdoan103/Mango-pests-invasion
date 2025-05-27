@@ -14,7 +14,8 @@ def record_result(request, session_id):
     # Check if the surveillance session already has a result
     if SurveillanceHistory.objects.filter(session=session).exists():
         messages.warning(request, 'This surveillance session already has a result.')
-        return redirect('session_detail', session_id=session.id)
+        # return redirect('session_detail', session_id=session.id)
+
     
     PestDetectionFormSet = formset_factory(PestDetectionForm, extra=3)
     DiseaseDetectionFormSet = formset_factory(DiseaseDetectionForm, extra=3)
