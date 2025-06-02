@@ -1,0 +1,75 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fa-solid fa-circle-info text-primary"></i> Surveillance Detail</h2>
+        <a href="{% url 'history_list' %}" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Back to History
+        </a>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Session: {{ history.session.name }}</h5>
+            <p class="mb-1"><strong>Date:</strong> {{ history.completion_date }} {{ history.completion_time }}</p>
+            <p class="mb-1"><strong>Plants Checked:</strong> {{ history.plants_checked }}</p>
+            <p class="mb-1"><strong>Pests:</strong> {{ history.plants_with_pests }}</p>
+            <p class="mb-1"><strong>Diseases:</strong> {{ history.plants_with_diseases }}</p>
+            <p>
+                <strong>Status:</strong>
+                {% if history.is_orchard_healthy %}
+                    <span class="badge bg-success">Healthy</span>
+                {% else %}
+                    <span class="badge bg-danger">At Risk</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5><i class="fa-solid fa-lightbulb text-warning"></i> Recommendation</h5>
+            <p>{{ history.recommendation|linebreaks }}</p>
+        </div>
+    </div>
+
+    {% if history.pest_detections.exists %}
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5><i class="fa-solid fa-bug text-danger"></i> Pest Detections</h5>
+            <ul class="list-group list-group-flush">
+                {% for pest in history.pest_detections.all %}
+                <li class="list-group-item">
+                    <strong>{{ pest.pest_name }}</strong> – {{ pest.count }} found
+                    <span class="badge bg-secondary ms-2">{{ pest.severity|capfirst }}</span>
+                    {% if pest.notes %}
+                    <div><em>Notes:</em> {{ pest.notes }}</div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if history.disease_detections.exists %}
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5><i class="fa-solid fa-virus text-warning"></i> Disease Detections</h5>
+            <ul class="list-group list-group-flush">
+                {% for disease in history.disease_detections.all %}
+                <li class="list-group-item">
+                    <strong>{{ disease.disease_name }}</strong> – {{ disease.count }} cases
+                    <span class="badge bg-secondary ms-2">{{ disease.severity|capfirst }}</span>
+                    {% if disease.notes %}
+                    <div><em>Notes:</em> {{ disease.notes }}</div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

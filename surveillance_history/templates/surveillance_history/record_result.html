@@ -1,0 +1,89 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Record Survey Results: {{ session.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- Main survey fields -->
+                        <div class="mb-4">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Plants Checked</label>
+                                    {{ form.plants_checked }}
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Plants with Pests</label>
+                                    {{ form.plants_with_pests }}
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Plants with Diseases</label>
+                                    {{ form.plants_with_diseases }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pest Detection -->
+                        <h5 class="mt-4 border-start border-4 ps-3">🪲 Pest Detection Details</h5>
+                        {{ pest_formset.management_form }}
+                        {% for form in pest_formset %}
+                        <div class="card mb-3 p-3 border">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.pest_name.label_tag }} {{ form.pest_name }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.count.label_tag }} {{ form.count }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.severity.label_tag }} {{ form.severity }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.notes.label_tag }} {{ form.notes }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <!-- Disease Detection -->
+                        <h5 class="mt-4 border-start border-4 ps-3">🦠 Disease Detection Details</h5>
+                        {{ disease_formset.management_form }}
+                        {% for form in disease_formset %}
+                        <div class="card mb-3 p-3 border">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.disease_name.label_tag }} {{ form.disease_name }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.count.label_tag }} {{ form.count }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.severity.label_tag }} {{ form.severity }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.notes.label_tag }} {{ form.notes }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <!-- Submit -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'history_list' %}" class="btn btn-secondary">Back</a>
+                            <button type="submit" class="btn btn-success"> Save Survey Results</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

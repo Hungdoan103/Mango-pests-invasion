@@ -1,0 +1,71 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3>Survey Session Details: {{ session.name }}</h3>
+                    <span class="badge {% if session.status == 'completed' %}bg-success{% elif session.status == 'in_progress' %}bg-warning{% else %}bg-secondary{% endif %}">
+                        {{ session.get_status_display }}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- General Information -->
+                        <div class="col-md-6">
+                            <h4>General Information</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Name:</strong> {{ session.name }}</li>
+                                <li class="list-group-item"><strong>Date:</strong> {{ session.date|date:"d/m/Y" }}</li>
+                                <li class="list-group-item"><strong>Season:</strong> {{ session.get_season_display }}</li>
+                                <li class="list-group-item"><strong>Status:</strong> {{ session.get_status_display }}</li>
+                            </ul>
+                        </div>
+
+                        <!-- Statistical Parameters -->
+                        <div class="col-md-6">
+                            <h4>Statistical Parameters</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Total Plants:</strong> {{ session.total_plants }}</li>
+                                <li class="list-group-item"><strong>Plants to Check:</strong> {{ session.plants_to_check }}</li>
+                                <li class="list-group-item"><strong>Confidence Level:</strong> {{ session.confidence_level|floatformat:2 }}</li>
+                                <li class="list-group-item"><strong>Error Margin:</strong> {{ session.error_margin|floatformat:2 }}</li>
+                            </ul>
+
+                            <div class="alert alert-warning mt-3">
+                                <h5>Seasonal Alert</h5>
+                                <strong>Pest Alert:</strong> {{ session.pest_alert_percentage }}%<br>
+                                <strong>Disease Alert:</strong> {{ session.disease_alert_percentage }}%
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    {% if session.notes %}
+                    <div class="mt-3">
+                        <h4>Notes</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                {{ session.notes }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Action buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'session_list' %}" class="btn btn-secondary">Back to List</a>
+                        {% if session.status != 'completed' %}
+                        <a href="{% url 'record_result' session.id %}" class="btn btn-primary">
+                            <i class="fas fa-clipboard-check"></i> Record Survey Results
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

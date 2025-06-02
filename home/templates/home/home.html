@@ -1,0 +1,37 @@
+{% extends 'home/base.html' %}
+
+{% block title %}MangoCare - Home{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Welcome to MangoCare</h1>
+        <p>Your comprehensive solution for mango pest and disease management</p>
+        <a href="{% url 'pest_disease_list' %}" class="cta-button">View Pest & Disease List</a>
+    </div>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <i class="fas fa-bug"></i>
+        <h3>Pest Identification</h3>
+        <p>Identify common mango pests with detailed descriptions and images</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-disease"></i>
+        <h3>Disease Management</h3>
+        <p>Learn about various mango diseases and their control measures</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-seedling"></i>
+        <h3>Treatment Guide</h3>
+        <p>Get expert recommendations for pest and disease control</p>
+    </div>
+</div>
+
+<div class="cta-section">
+    <h2>Start Managing Your Mango Health Today</h2>
+    <p>Access our comprehensive database of mango pests and diseases</p>
+    <a href="{% url 'pest_disease_list' %}" class="cta-button">Explore Now</a>
+</div>
+{% endblock %} 
