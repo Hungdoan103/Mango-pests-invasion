@@ -1,0 +1,194 @@
+{% extends 'app_project1/base.html' %}
+{% load static %}
+
+{% block title %}{{ item.name }} - MangoCare{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app_project1/detail.css' %}">
+<style>
+    .farm-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .farm-section {
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .farm-section h2 {
+        color: #2ecc71;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .farm-info {
+        margin-bottom: 1rem;
+    }
+
+    .farm-info p {
+        margin: 0.5rem 0;
+        color: #666;
+    }
+
+    .farm-info strong {
+        color: #333;
+    }
+
+    .update-form {
+        margin-top: 1rem;
+    }
+
+    .update-form input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .update-btn {
+        background: #2ecc71;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .update-btn:hover {
+        background: #27ae60;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if user.is_authenticated %}
+    <div class="farm-info-grid">
+        <div class="farm-section">
+            <h2>Farm Information</h2>
+            <div class="farm-info">
+                <p><strong>Farm Name:</strong> {{ user_profile.farm_name }}</p>
+                <p><strong>Total Trees:</strong> {{ user_profile.total_trees }}</p>
+                <p><strong>Owner:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+        </div>
+        
+        <div class="farm-section">
+            <h2>Surveillance</h2>
+            <form method="POST" action="{% url 'update_farm_info' %}" class="update-form">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                {{ farm_form.as_p }}
+                <button type="submit" class="update-btn">Update Farm Information</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="detail-header">
+        <h1>{{ item.name }}</h1>
+        {% if user.is_authenticated %}
+        <div class="farm-subtitle">{{ user_profile.farm_name }}</div>
+        {% endif %}
+        <div class="scientific-name">{{ item.sci_name }}</div>
+    </div>
+
+    <div class="detail-content">
+        {% if item.image_url %}
+        <div class="image-section">
+            <img src="{{ item.image_url }}" alt="{{ item.name }}" class="detail-image">
+        </div>
+        {% endif %}
+
+        <div class="type-badge {{ item.category_class }}">{{ item.type }}</span>
+        </div>
+
+        <div class="severity-badge {% if item.severity == 'Very High' %}very-high{% elif item.severity == 'High' %}high{% elif item.severity == 'Moderate-High' %}moderate-high{% else %}moderate{% endif %}">
+            Severity: {{ item.severity }}{% if item.severity_desc %} ({{ item.severity_desc }}){% endif %}
+        </div>
+
+        <div class="info-section">
+            <div class="description-section">
+                <h2>Description</h2>
+                {% if item.egg or item.larvae or item.adult %}
+                <div class="life-stages">
+                    {% if item.egg %}
+                    <div class="stage-item">
+                        <strong>Egg:</strong> {{ item.egg }}
+                    </div>
+                    {% endif %}
+                    {% if item.larvae %}
+                    <div class="stage-item">
+                        <strong>Larvae:</strong> {{ item.larvae }}
+                    </div>
+                    {% endif %}
+                    {% if item.adult %}
+                    <div class="stage-item">
+                        <strong>Adult:</strong> {{ item.adult }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if item.life_cycle %}
+                <div class="life-cycle">
+                    <strong>Life Cycle:</strong> {{ item.life_cycle }}
+                </div>
+                {% endif %}
+
+                <div class="main-description">
+                    {{ item.long_des }}
+                </div>
+            </div>
+
+            <div class="symptoms-section">
+                <h2>Symptoms</h2>
+                <p>{{ item.symp }}</p>
+            </div>
+
+            <div class="damage-section">
+                <h2>Damage</h2>
+                <p>{{ item.damage }}</p>
+            </div>
+
+            <div class="monitoring-section">
+                <h2>Monitoring</h2>
+                <p>{{ item.monitor }}</p>
+                {% if item.intervention %}
+                <div class="intervention">
+                    <strong>Intervention Threshold:</strong> {{ item.intervention }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="control-section">
+                <h2>Control Measures</h2>
+                <p>{{ item.ctr_measure }}</p>
+            </div>
+
+            <div class="reference-section">
+                <h2>Reference</h2>
+                <p><a href="https://daf.nt.gov.au/__data/assets/pdf_file/0007/1380742/mango-field-guide-part-1.pdf" target ="_blank" class="pdf-link">2024 Mango Field Guide.</a></p>
+            </div>
+
+            <div class="back-button-container">
+                <a href="/pest-disease/" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
