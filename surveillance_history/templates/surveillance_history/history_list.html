@@ -1,0 +1,58 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">
+            <i class="fas fa-shield-halved text-primary me-2"></i> Surveillance History
+        </h2>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body">
+            {% if histories %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Session Name</th>
+                                <th>Completion Date</th>
+                                <th>Plants Checked</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for history in histories %}
+                            <tr>
+                                <td>{{ history.session.name }}</td>
+                                <td>{{ history.completion_date|date:"d/m/Y" }}</td>
+                                <td>{{ history.plants_checked }}</td>
+                                <td>
+                                    <span class="badge {% if history.is_orchard_healthy %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{ history.is_orchard_healthy|yesno:"Safe,At Risk" }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'history_detail' history.id %}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center text-muted py-5">
+                    <i class="fas fa-folder-open fa-3x mb-3"></i>
+                    <p>No surveillance data found.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
